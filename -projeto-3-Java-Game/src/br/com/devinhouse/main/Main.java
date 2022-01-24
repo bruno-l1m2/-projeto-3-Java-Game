@@ -19,7 +19,7 @@ public class Main {
 		Menu menu = new Menu();
 		Roteiro roteiro = new Roteiro();		
 		
-		System.out.println("Seja bem vindo(a) à BATALHA FINAL!");
+		System.out.println("Seja bem vindo(a) Ã  BATALHA FINAL!");
 		
 		// Menus
 		nivel = menu.menuNivel();		
@@ -32,7 +32,7 @@ public class Main {
 		roteiro.startRoteiro(nivel, nome, sexo, classe, arma);
 		
 		// Fim do Game
-		System.out.println("O jogo encerra!");
+		System.out.println("Jogo encerrado!");
 	}
 		
 }
