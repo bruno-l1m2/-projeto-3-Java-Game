@@ -1,5 +1,6 @@
 package game.br.com.devinhouse.entidades;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -10,24 +11,29 @@ public class Menu {
 	public Menu(){	
 	}
 	
-	// Menu - nÌvel de dificuldade
+	// Menu - n√≠vel de dificuldade
 	public String menuNivel() {
-		int opcao;
+		int opcao = 0;
 		String nivel = "";
-		String menu_nivel =  " _______________________________________\n";
-			   menu_nivel += "|Escolha o nÌvel de dificuldade do game:|\n";
+		    String menu_nivel =  " _______________________________________\n";
+			   menu_nivel += "|Escolha o n√≠vel de dificuldade do game:|\n";
 			   menu_nivel += "|                                       |\n";
-			   menu_nivel += "| 1 - NÌvel F·cil                       |\n";
-			   menu_nivel += "| 2 - NÌvel Normal.                     |\n";
-			   menu_nivel += "| 3 - NÌvel DifÌcil.                    |\n";
+			   menu_nivel += "| 1 - N√≠vel F√°cil                       |\n";
+			   menu_nivel += "| 2 - N√≠vel Normal.                     |\n";
+			   menu_nivel += "| 3 - N√≠vel Dif√≠cil.                    |\n";
 			   menu_nivel += "|_______________________________________|\n";
-		// Definir o nÌvel de dificuldade
+		// Definir o n√≠vel de dificuldade
 		do {
 			System.out.println(menu_nivel);
-			opcao = entrada.nextInt();
+			try {
+				opcao = entrada.nextInt();
+				} catch(InputMismatchException erro) {
+					System.out.println("Por favor, digite somente o numero, erro: " + erro);
+				    entrada.nextLine();
+			}
 			switch (opcao) {
 				case 1: 
-						nivel = "F·cil";
+						nivel = "F√°cil";
 						opcao = 9999;
 						break;
 				case 2:	
@@ -35,11 +41,11 @@ public class Menu {
 						opcao = 9999;
 						break;
 				case 3:
-						nivel = "DifÌcil";
+						nivel = "Dif√≠cil";
 						opcao = 9999;
 						break;
 				default:
-						System.out.println("OpÁ„o do nÌvel inv·lida, tente novamente.");
+						System.out.println("Op√ß√£o do n√≠vel inv√°lida, tente novamente.");
 			}
 		} while(opcao != 9999);
 		return nivel;
@@ -47,20 +53,30 @@ public class Menu {
 	
 	// Definir o nome do personagem
 	public String menuNome() {
-		
+		String nome = "";
+			while(nome.equals("")) {
+			try{
 				System.out.println(" ________________________________");
 				System.out.println("|                                |");
 				System.out.println("|  Digite o nome do personagem:  |");
 				System.out.println("|________________________________|");
-				String nome = entrada.next();
+				nome = entrada.next();
+				} catch(InputMismatchException erro) {
+				}
+				entrada.nextLine();
+				if(!nome.matches("^[A-Za-z ]*$")) {
+					System.out.println("Por favor, digite somente o nome!");
+					nome = "";
+				}
+			}
 				return nome;
 	}
 	
 	// Menu - tipo de sexo
 	public String menuSexo() {
-				int opcao;
+				int opcao = 0;
 				String sexo ="";
-				 String  menu_sexo = " _____________________________\n";
+				         String  menu_sexo = " _____________________________\n";
 						menu_sexo += "|Escolha o sexo do personagem:|\n";
 						menu_sexo += "|                             |\n";
 						menu_sexo += "| 1 - Masculino.              |\n";
@@ -69,7 +85,12 @@ public class Menu {
 				// Definir o sexo do personagem
 				do {
 					System.out.println(menu_sexo);
-					opcao = entrada.nextInt();
+					try {
+						opcao = entrada.nextInt();
+						} catch(InputMismatchException erro) {
+							System.out.println("Por favor, digite somente o numero, erro: " + erro);
+							entrada.nextLine();
+						}
 					switch (opcao) {
 						case 1:
 							   sexo = "Masculino";
@@ -80,7 +101,7 @@ public class Menu {
 							   opcao=9999;
 							   break;
 						default:
-							   System.out.println("OpÁ„o do sexo inv·lida, tente novamente.");
+							   System.out.println("Op√ß√£o do sexo inv√°lida, tente novamente.");
 					}	
 				} while(opcao != 9999);
 				return sexo;
@@ -88,22 +109,27 @@ public class Menu {
 	
 	// Menu - classe de combate
 	public String menuClasse() {
-		        int opcao;
+		        int opcao = 0;
 		        String classe = "";
-				String menu_personagem = " ______________________________\n";
+				    String menu_personagem = " ______________________________\n";
 					  menu_personagem += "|Escolha uma classe de combate:|\n";
 					  menu_personagem += "|                              |\n";
 					  menu_personagem += "| 1 - Cavaleiro.               |\n";
 					  menu_personagem += "| 2 - Arqueiro.                |\n";
 					  menu_personagem += "| 3 - Mago.                    |\n";
-					  menu_personagem += "| 4 - B·rbaro.                 |\n";
+					  menu_personagem += "| 4 - B√°rbaro.                 |\n";
 					  menu_personagem += "| 5 - Alquimista.              |\n";
 					  menu_personagem += "|______________________________|\n";
 				
 				// Definir a classe de combate
 				do {
 					System.out.println(menu_personagem);
-					opcao = entrada.nextInt();
+					try {
+						opcao = entrada.nextInt();
+						} catch(InputMismatchException erro) {
+							System.out.println("Por favor, digite somente o numero, erro: " + erro);
+							entrada.nextLine();
+						}
 					switch (opcao) {
 						case 1: 
 								classe = "Cavaleiro";
@@ -119,7 +145,7 @@ public class Menu {
 								break;
 								
 						case 4:
-								classe = "B·rbaro";
+								classe = "B√°rbaro";
 								opcao = 9999;
 								break;
 							   
@@ -128,7 +154,7 @@ public class Menu {
 							    opcao = 9999;
 							    break;
 						default:
-							    System.out.println("OpÁ„o da Classe de Combate inv·lida, tente novamente.");
+							    System.out.println("Op√ß√£o da Classe de Combate inv√°lida, tente novamente.");
 					}		
 				} while(opcao != 9999);
 				return classe;
@@ -138,20 +164,20 @@ public class Menu {
 	public String menuArma(String classe) {
 		
 		String opcao = classe;
-		int opcao2;
-		int opcao3=0;
+		int opcao2 = 0;
+		int opcao3 = 0;
 		String arma = "";
 		
 		// Menu - Arma Cavaleiro
-		  String menu_arma_c = " __________________________\n";
+		          String menu_arma_c = " __________________________\n";
 				menu_arma_c += "|Escolha arma do Cavaleiro:|\n";
 				menu_arma_c += "|                          |\n";
 				menu_arma_c += "|  1 - Espada.             |\n";
-				menu_arma_c += "|  2 - LanÁa.              |\n";
+				menu_arma_c += "|  2 - Lan√ßa.              |\n";
 				menu_arma_c += "|__________________________|\n";
 		
 		// Menu - Arma Arqueiro
-		  String menu_arma_a = " _________________________\n";
+		          String menu_arma_a = " _________________________\n";
 				menu_arma_a += "|Escolha arma do Arqueiro:|\n";
 				menu_arma_a += "|                         |\n";
 				menu_arma_a += "| 1 - Arco e Flecha.      |\n";
@@ -159,16 +185,16 @@ public class Menu {
 				menu_arma_a += "|_________________________|\n";
 		
 		// Menu - Arma Mago
-		  String menu_arma_m = " _____________________\n";
+		          String menu_arma_m = " _____________________\n";
 				menu_arma_m += "|Escolha arma do Mago:|\n";
 				menu_arma_m += "|                     |\n";
 				menu_arma_m += "|  1 - Cajado.        |\n";
 				menu_arma_m += "|  2 - Livro.         |\n";
 				menu_arma_m += "|_____________________|\n";
 		
-		// Menu - Arma B·rbaro
-		  String menu_arma_b = " ________________________\n";
-				menu_arma_b += "|Escolha arma do B·rbaro:|\n";
+		// Menu - Arma B√°rbaro
+		          String menu_arma_b = " ________________________\n";
+				menu_arma_b += "|Escolha arma do B√°rbaro:|\n";
 				menu_arma_b += "|                        |\n";
 				menu_arma_b += "|  1 - Machado.          |\n";
 				menu_arma_b += "|  2 - Martelo.          |\n";
@@ -176,11 +202,11 @@ public class Menu {
 				menu_arma_b += "|________________________|\n";
 		
 		// Menu - Arma Alquimista
-		  String menu_arma_al = " ___________________________\n";
+		          String menu_arma_al = " ___________________________\n";
 				menu_arma_al += "|Escolha arma do Alquimista:|\n";
 				menu_arma_al += "|                           |\n";
 				menu_arma_al += "|  1 - Livro.               |\n";
-				menu_arma_al += "|  2 - PoÁıes.              |\n";
+				menu_arma_al += "|  2 - Po√ß√µes.              |\n";
 				menu_arma_al += "|___________________________|\n";
 		
 		do {
@@ -189,18 +215,23 @@ public class Menu {
 								// Definir arma do Cavaleiro
 								do {
 									System.out.println(menu_arma_c);
-									opcao2 = entrada.nextInt();
+									try {
+										opcao2 = entrada.nextInt();
+									} catch(InputMismatchException erro) {
+										System.out.println("Por favor, digite somente o numero, erro: " + erro);
+									 	entrada.nextLine();
+									}
 									switch (opcao2) {
 										case 1:
 											   arma = "Espada";
 											   opcao2 = 999;
 											   break;
 										case 2:
-											   arma = "LanÁa";
+											   arma = "Lan√ßa";
 											   opcao2 = 999;
 											   break;
 										default:
-											System.out.println("OpÁ„o da arma inv·lida, tente novamente.");
+											System.out.println("Op√ß√£o da arma inv√°lida, tente novamente.");
 									}
 								} while(opcao2 != 999);
 								opcao3 = 9999;
@@ -209,7 +240,12 @@ public class Menu {
 								// Definir arma do Arqueiro
 								do {
 									System.out.println(menu_arma_a);
-									opcao2 = entrada.nextInt();
+									try {
+										opcao2 = entrada.nextInt();
+									} catch(InputMismatchException erro) {
+										System.out.println("Por favor, digite somente o numero, erro: " + erro);
+										entrada.nextLine();
+									}
 									switch (opcao2) {
 											case 1:
 												   arma = "Arco";
@@ -220,7 +256,7 @@ public class Menu {
 												   opcao2 = 999;
 												   break;
 											default:
-												   System.out.println("OpÁ„o da arma inv·lida, tente novamente.");
+												   System.out.println("Op√ß√£o da arma inv√°lida, tente novamente.");
 									}		
 								} while(opcao2 != 999);
 								opcao3 = 9999;
@@ -229,7 +265,12 @@ public class Menu {
 								// Definir arma do Mago
 								do {
 									System.out.println(menu_arma_m);
-									opcao2 = entrada.nextInt();
+									try {
+										opcao2 = entrada.nextInt();
+									} catch(InputMismatchException erro) {
+										System.out.println("Por favor, digite somente o numero, erro: " + erro);
+										entrada.nextLine();
+									}
 									switch (opcao2) {
 										case 1:
 											   arma = "Cajado";
@@ -240,16 +281,21 @@ public class Menu {
 											   opcao2 = 999;
 											   break;
 										default:
-											   System.out.println("OpÁ„o da arma inv·lida, tente novamente.");
+											   System.out.println("Op√ß√£o da arma inv√°lida, tente novamente.");
 									}
 								} while(opcao2 != 999);
 								opcao3 = 9999;
 								break;
-				case "B·rbaro":	
-								// Definir arma do B·rbaro
+				case "B√°rbaro":	
+								// Definir arma do B√°rbaro
 								do {
 									System.out.println(menu_arma_b);
-									opcao2 = entrada.nextInt();
+									try {
+										opcao2 = entrada.nextInt();
+									} catch(InputMismatchException erro) {
+										System.out.println("Por favor, digite somente o numero, erro: " + erro);
+										entrada.nextLine();
+									}
 									switch (opcao2) {
 										case 1:
 											   arma = "Machado";
@@ -264,7 +310,7 @@ public class Menu {
 											   opcao2 = 999;
 											   break;
 										default:
-											   System.out.println("OpÁ„o da arma inv·lida, tente novamente.");
+											   System.out.println("Op√ß√£o da arma inv√°lida, tente novamente.");
 									}
 									
 								} while(opcao2 != 999);
@@ -274,54 +320,64 @@ public class Menu {
 								// Definir arma do Alquimista
 								do {
 									System.out.println(menu_arma_al);
-									opcao2 = entrada.nextInt();
+										try {
+											opcao2 = entrada.nextInt();
+										} catch(InputMismatchException erro) {
+											System.out.println("Por favor, digite somente o numero, erro: " + erro);
+											entrada.nextLine();
+										}
 									switch (opcao2) {
 										case 1:
 											   arma = "Livro";
 											   opcao2 = 999;
 											   break;
 										case 2:
-											   arma = "PoÁıes";
+											   arma = "Po√ß√µes";
 											   opcao2 = 999;
 											   break;
 										default:
-											System.out.println("OpÁ„o da arma È inv·lida, tente novamente.");
+											System.out.println("Op√ß√£o da arma √© inv√°lida, tente novamente.");
 									}
 								} while(opcao2 != 999);
 								opcao3 = 9999;
 								break;
 				default:
-					System.out.println("OpÁ„o da classe È inv·lida, tente novamente.");	
+					System.out.println("Op√ß√£o da classe √© inv√°lida, tente novamente.");	
 		   }
 		 } while(opcao3 != 9999);	
 		return arma;	
 	}
 	
-	// Menu - MotivaÁ„o
+	// Menu - Motiva√ß√£o
 	public String menuMotivacao() {
 		String motivacao = "";
-		int opcao;
-		  String menu_motivacao = " ________________________\n";
-				menu_motivacao += "|Escolha a sua motivaÁ„o:|\n";
+		int opcao = 0;
+		          String menu_motivacao = " ________________________\n";
+				menu_motivacao += "|Escolha a sua motiva√ß√£o:|\n";
 				menu_motivacao += "|                        |\n";
-				menu_motivacao += "|  1 - VINGAN«A.         |\n";
-				menu_motivacao += "|  2 - GL”RIA.           |\n";
+				menu_motivacao += "|  1 - VINGAN√áA.         |\n";
+				menu_motivacao += "|  2 - GL√ìRIA.           |\n";
 				menu_motivacao += "|________________________|\n";
-		// Definir a sua motivaÁ„o
+		// Definir a sua motiva√ß√£o
 		do {
 			System.out.println(menu_motivacao);
-			opcao = entrada.nextInt();
+			try {
+							opcao = entrada.nextInt();
+						} catch(InputMismatchException erro) {
+							System.out.println("Por favor, digite somente o numero, erro: " + erro);
+							entrada.nextLine();
+						}
 			switch (opcao) {
 				case 1:
-					   motivacao = "VINGAN«A";
+					   motivacao = "VINGAN√áA";
 					   opcao = 9999;
 					   break;
 				case 2:
-					   motivacao = "GL”RIA";
+					   motivacao = "GL√ìRIA";
 					   opcao = 9999;
 					   break;
 				default:
-					   System.out.println("OpÁ„o da motivaÁ„o È inv·lida, tente novamente.");
+					   System.out.println("Op√ß√£o da motiva√ß√£o √© inv√°lida, tente novamente.");
 			}	
 		} while(opcao != 9999);		
 		return motivacao; 
@@ -330,9 +386,9 @@ public class Menu {
 	// Menu - Escolha 1 
 		public String menuEscolha1() {
 			String escolha1 = "";
-			int opcao;
-			  String menu_es = " _____________________\n";
-					menu_es += "|  Escolha uma opÁ„o: |\n";
+			int opcao = 0;
+			          String menu_es = " _____________________\n";
+					menu_es += "|  Escolha uma op√ß√£o: |\n";
 					menu_es += "|                     |\n";
 					menu_es += "|1 - Seguir em frente.|\n";
 					menu_es += "|2 - Desistir.        |\n";
@@ -340,7 +396,12 @@ public class Menu {
 			// Definir a sua escolha
 			do {
 				System.out.println(menu_es);
-				opcao = entrada.nextInt();
+				try {
+							opcao = entrada.nextInt();
+						} catch(InputMismatchException erro) {
+							System.out.println("Por favor, digite somente o numero, erro: " + erro);
+							entrada.nextLine();
+						}
 				switch (opcao) {
 					case 1:
 						   escolha1 = "Seguir";
@@ -351,7 +412,7 @@ public class Menu {
 						   opcao = 9999;
 						   break;
 					default:
-						   System.out.println("OpÁ„o est· inv·lida, tente novamente.");
+						   System.out.println("Op√ß√£o est√° inv√°lida, tente novamente.");
 				}	
 			} while(opcao != 9999);		
 			return escolha1; 
@@ -360,9 +421,9 @@ public class Menu {
 		// Menu - Escolha 2 
 				public String menuEscolha2() {
 					String escolha2 = "";
-					int opcao;
-					  String menu_es = " ___________________________\n";
-							menu_es += "|    Escolha uma opÁ„o:     |\n";
+					int opcao = 0;
+					          String menu_es = " ___________________________\n";
+							menu_es += "|    Escolha uma op√ß√£o:     |\n";
 							menu_es += "|                           |\n";
 							menu_es += "|1 - Andando cuidadosamente.|\n";
 							menu_es += "|2 - Correndo.              |\n";
@@ -371,7 +432,12 @@ public class Menu {
 					// Definir a sua escolha 2
 					do {
 						System.out.println(menu_es);
-						opcao = entrada.nextInt();
+						try {
+							opcao = entrada.nextInt();
+						} catch(InputMismatchException erro) {
+							System.out.println("Por favor, digite somente o numero, erro: " + erro);
+							entrada.nextLine();
+						}
 						switch (opcao) {
 							case 1:
 								   escolha2 = "Andando";
@@ -386,7 +452,7 @@ public class Menu {
 								   opcao = 9999;
 								   break;
 							default:
-								   System.out.println("OpÁ„o est· inv·lida, tente novamente.");
+								   System.out.println("Op√ß√£o est√° inv√°lida, tente novamente.");
 						}	
 					} while(opcao != 9999);		
 					return escolha2; 
@@ -395,32 +461,37 @@ public class Menu {
 				// Menu - Escolha 3 
 				public boolean menuEscolha3() {
 					boolean escolha = true;
-					int opcao;
-					  String menu_es = " ______________________\n";
+					int opcao = 0;
+					          String menu_es = " ______________________\n";
 							menu_es += "|Deseja pegar Armadura:|\n";
 							menu_es += "|                      |\n";
 							menu_es += "| 1 - Sim              |\n";
-							menu_es += "| 2 - N„o              |\n";
+							menu_es += "| 2 - N√£o              |\n";
 							menu_es += "|______________________|\n";
 					// Definir a sua escolha 3
 					do {
 						System.out.println(menu_es);
-						opcao = entrada.nextInt();
+						try {
+							opcao = entrada.nextInt();
+						} catch(InputMismatchException erro) {
+							System.out.println("Por favor, digite somente o numero, erro: " + erro);
+							entrada.nextLine();
+						}
 						switch (opcao) {
 							case 1:
 								   escolha = true;
-								   System.out.println("VocÍ resolve usar os equipamentos inimigo contra ele, e trocar algumas peÁas suas, que\n"
-										   			+" estavam danificadas, pelas peÁas de armaduras existentes na sala. De armadura nova,\n"
-										   			+ " vocÍ se sente mais protegido para os desafios ‡ sua frente.\n");
+								   System.out.println("Voc√™ resolve usar os equipamentos inimigo contra ele, e trocar algumas pe√ßas suas, que\n"
+										   			+" estavam danificadas, pelas pe√ßas de armaduras existentes na sala. De armadura nova,\n"
+										   			+ " voc√™ se sente mais protegido para os desafios √† sua frente.\n");
 								   opcao = 9999;
 								   break;
 							case 2:
 								   escolha = false;
-								   System.out.println("VocÍ decide que n„o precisa utilizar nada que venha das m„os do inimigo.");
+								   System.out.println("Voc√™ decide que n√£o precisa utilizar nada que venha das m√£os do inimigo.");
 								   opcao = 9999;
 								   break;
 							default:
-								   System.out.println("OpÁ„o est· inv·lida, tente novamente.");
+								   System.out.println("Op√ß√£o est√° inv√°lida, tente novamente.");
 						}	
 					} while(opcao != 9999);		
 					return escolha; 
@@ -429,30 +500,35 @@ public class Menu {
 				// Menu - Escolha 4 
 				public boolean menuEscolha4() {
 					boolean escolha = true;
-					int opcao;
-					  String menu_es = " __________________________________\n";
+					int opcao = 0;
+					          String menu_es = " __________________________________\n";
 							menu_es += "|Deseja beber a liquido da garrafa:|\n";
 							menu_es += "|                                  |\n";
 							menu_es += "|  1 - Sim                         |\n";
-							menu_es += "|  2 - N„o                         |\n";
+							menu_es += "|  2 - N√£o                         |\n";
 							menu_es += "|__________________________________|\n";
 					// Definir a sua escolha 4
 					do {
 						System.out.println(menu_es);
-						opcao = entrada.nextInt();
+						try {
+							opcao = entrada.nextInt();
+						} catch(InputMismatchException erro) {
+							System.out.println("Por favor, digite somente o numero, erro: " + erro);
+							entrada.nextLine();
+						}
 						switch (opcao) {
 							case 1:
 								   escolha = true;
-								   System.out.println("VocÍ se sente revigorado para seguir adiante!");
+								   System.out.println("Voc√™ se sente revigorado para seguir adiante!");
 								   opcao = 9999;
 								   break;
 							case 2:
 								   escolha = false;
-								   System.out.println("VocÍ fica receoso de beber algo produzido pelo inimigo.");
+								   System.out.println("Voc√™ fica receoso de beber algo produzido pelo inimigo.");
 								   opcao = 9999;
 								   break;
 							default:
-								   System.out.println("OpÁ„o est· inv·lida, tente novamente.");
+								   System.out.println("Op√ß√£o est√° inv√°lida, tente novamente.");
 						}	
 					} while(opcao != 9999);		
 					return escolha; 
@@ -461,8 +537,8 @@ public class Menu {
 				// Menu - Escolha 5 
 				public boolean menuEscolha5() {
 					boolean escolha = true;
-					int opcao;
-					  String menu_es = " ___________________________\n";
+					int opcao = 0;
+					          String menu_es = " ___________________________\n";
 							menu_es += "|Escolha de ataca ou espera:|\n";
 							menu_es += "|                           |\n";
 							menu_es += "|  1 - Ataca                |\n";
@@ -471,7 +547,12 @@ public class Menu {
 					// Definir a sua escolha 4
 					do {
 						System.out.println(menu_es);
-						opcao = entrada.nextInt();
+						try {
+							opcao = entrada.nextInt();
+						} catch(InputMismatchException erro) {
+							System.out.println("Por favor, digite somente o numero, erro: " + erro);
+							entrada.nextLine();
+						}
 						switch (opcao) {
 							case 1:
 								   escolha = true;
@@ -482,7 +563,7 @@ public class Menu {
 								   opcao = 9999;
 								   break;
 							default:
-								   System.out.println("OpÁ„o est· inv·lida, tente novamente.");
+								   System.out.println("Op√ß√£o est√° inv√°lida, tente novamente.");
 						}	
 					} while(opcao != 9999);		
 					return escolha; 
@@ -491,9 +572,9 @@ public class Menu {
 				// Menu - Inicio da Partida 
 				public String menuPartida() {
 					String escolha = "";
-					int opcao;
-						  String menu_pa = " __________________\n";
-								menu_pa += "|Escolha uma opÁ„o:|\n";
+					int opcao = 0;
+						          String menu_pa = " __________________\n";
+								menu_pa += "|Escolha uma op√ß√£o:|\n";
 								menu_pa += "|                  |\n";
 								menu_pa += "|1 - Deseja atacar.|\n";
 								menu_pa += "|2 - Fugir.        |\n";
@@ -501,7 +582,12 @@ public class Menu {
 					// Definir a sua escolha
 					do {
 						System.out.println(menu_pa);
-						opcao = entrada.nextInt();
+						try {
+							opcao = entrada.nextInt();
+						} catch(InputMismatchException erro) {
+							System.out.println("Por favor, digite somente o numero, erro: " + erro);
+							entrada.nextLine();
+						}
 						switch (opcao) {
 							case 1:
 								   escolha = "Deseja atacar";
@@ -512,7 +598,7 @@ public class Menu {
 								   opcao = 9999;
 								   break;
 							default:
-								   System.out.println("OpÁ„o est· inv·lida, tente novamente.");
+								   System.out.println("Op√ß√£o est√° inv√°lida, tente novamente.");
 						}	
 					} while(opcao != 9999);		
 					return escolha; 
